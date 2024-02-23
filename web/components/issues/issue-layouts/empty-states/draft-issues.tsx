@@ -42,7 +42,7 @@ export const ProjectDraftEmptyState: React.FC = observer(() => {
 
   const isLightMode = resolvedTheme ? resolvedTheme === "light" : currentUser?.theme.theme === "light";
   const currentLayoutEmptyStateImagePath = getEmptyStateImagePath("empty-filters", activeLayout ?? "list", isLightMode);
-  const EmptyStateImagePath = getEmptyStateImagePath("draft", "empty-issues", isLightMode);
+  const EmptyStateImagePath = getEmptyStateImagePath("draft", "draft-issues-empty", isLightMode);
 
   const issueFilterCount = size(
     Object.fromEntries(
@@ -61,7 +61,7 @@ export const ProjectDraftEmptyState: React.FC = observer(() => {
     });
   };
 
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   const emptyStateProps: EmptyStateProps =
     issueFilterCount > 0

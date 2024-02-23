@@ -49,15 +49,11 @@ const workspaceLinks = [
 
 const projectLinks = [
   {
-    name: "Backlogs",
-    Icon: BarChart2,
-  },
-  {
     name: "Issues",
     Icon: LayersIcon,
   },
   {
-    name: "Sprints",
+    name: "Cycles",
 
     Icon: ContrastIcon,
   },
@@ -269,7 +265,7 @@ export const OnboardingSidebar: React.FC<Props> = (props) => {
             <div className="mb-3 flex w-4/5 items-center justify-between text-base font-medium text-custom-text-200">
               <div className="flex items-center gap-x-2">
                 <Image src={projectEmoji} alt="Plane Logo" className="h-4 w-4" />
-                <span> Blockagile</span>
+                <span> Plane</span>
               </div>
 
               <ChevronDown className="h-4 w-4" />

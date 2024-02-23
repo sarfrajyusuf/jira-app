@@ -128,37 +128,37 @@ export const CYCLE_STATE_GROUPS_DETAILS = [
 
 export const WORKSPACE_ACTIVE_CYCLES_DETAILS = [
   {
-    title: "10,000-feet view of all active sprints.",
+    title: "10,000-feet view of all active cycles.",
     description:
-      "Zoom out to see running sprints across all your projects at once instead of going from Sprint to Sprint in each project.",
+      "Zoom out to see running cycles across all your projects at once instead of going from Cycle to Cycle in each project.",
     icon: Folder,
   },
   {
-    title: "Get a snapshot of each active sprint.",
+    title: "Get a snapshot of each active cycle.",
     description:
-      "Track high-level metrics for all active sprints, see their state of progress, and get a sense of scope against deadlines.",
+      "Track high-level metrics for all active cycles, see their state of progress, and get a sense of scope against deadlines.",
     icon: CircleDashed,
   },
   {
     title: "Compare burndowns.",
-    description: "Monitor how each of your teams are performing with a peek into each sprint’s burndown report.",
+    description: "Monitor how each of your teams are performing with a peek into each cycle’s burndown report.",
     icon: BarChart4,
   },
   {
     title: "Quickly see make-or-break issues. ",
     description:
-      "Preview high-priority issues for each sprint against due dates. See all of them per sprint in one click.",
+      "Preview high-priority issues for each cycle against due dates. See all of them per cycle in one click.",
     icon: AlertOctagon,
   },
   {
-    title: "Zoom into sprints that need attention. ",
-    description: "Investigate the state of any sprint that doesn’t conform to expectations in one click.",
+    title: "Zoom into cycles that need attention. ",
+    description: "Investigate the state of any cycle that doesn’t conform to expectations in one click.",
     icon: Search,
   },
   {
     title: "Stay ahead of blockers.",
     description:
-      "Spot challenges from one project to another and see inter-sprint dependencies that aren’t obvious from any other view.",
+      "Spot challenges from one project to another and see inter-cycle dependencies that aren’t obvious from any other view.",
     icon: Microscope,
   },
 ];

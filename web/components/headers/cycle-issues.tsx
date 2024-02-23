@@ -140,7 +140,7 @@ export const CycleIssuesHeader: React.FC = observer(() => {
   // derived values
   const cycleDetails = cycleId ? getCycleById(cycleId.toString()) : undefined;
   const canUserCreateIssue =
-    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER, EUserProjectRoles.TESTER, EUserProjectRoles.VIEWER].includes(currentProjectRole);
+    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER].includes(currentProjectRole);
 
   return (
     <>

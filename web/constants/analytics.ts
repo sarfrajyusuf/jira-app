@@ -33,7 +33,7 @@ export const ANALYTICS_X_AXIS_VALUES: { value: TXAxisValues; label: string }[] =
   },
   {
     value: "issue_cycle__cycle_id",
-    label: "Sprint",
+    label: "Cycle",
   },
   {
     value: "issue_module__module_id",

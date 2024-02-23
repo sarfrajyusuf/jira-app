@@ -143,7 +143,7 @@ export const ModuleIssuesHeader: React.FC = observer(() => {
   // derived values
   const moduleDetails = moduleId ? getModuleById(moduleId.toString()) : undefined;
   const canUserCreateIssue =
-    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER, EUserProjectRoles.TESTER, EUserProjectRoles.VIEWER].includes(currentProjectRole);
+    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER].includes(currentProjectRole);
 
   return (
     <>

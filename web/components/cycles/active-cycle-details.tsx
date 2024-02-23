@@ -123,7 +123,7 @@ export const ActiveCycleDetails: React.FC<IActiveCycleDetails> = observer((props
       setToastAlert({
         type: "error",
         title: "Error!",
-        message: "Couldn't add the sprint to favorites. Please try again.",
+        message: "Couldn't add the cycle to favorites. Please try again.",
       });
     });
   };
@@ -136,7 +136,7 @@ export const ActiveCycleDetails: React.FC<IActiveCycleDetails> = observer((props
       setToastAlert({
         type: "error",
         title: "Error!",
-        message: "Couldn't add the sprint to favorites. Please try again.",
+        message: "Couldn't add the cycle to favorites. Please try again.",
       });
     });
   };
@@ -222,12 +222,13 @@ export const ActiveCycleDetails: React.FC<IActiveCycleDetails> = observer((props
                   <span className="text-custom-text-200">{cycleOwnerDetails?.display_name}</span>
                 </div>
 
-                {activeCycle.assignees.length > 0 && (
+                {activeCycle.assignee_ids.length > 0 && (
                   <div className="flex items-center gap-1 text-custom-text-200">
                     <AvatarGroup>
-                      {activeCycle.assignees.map((assignee) => (
-                        <Avatar key={assignee.id} name={assignee.display_name} src={assignee.avatar} />
-                      ))}
+                      {activeCycle.assignee_ids.map((assigne_id) => {
+                        const member = getUserDetails(assigne_id);
+                        return <Avatar key={member?.id} name={member?.display_name} src={member?.avatar} />;
+                      })}
                     </AvatarGroup>
                   </div>
                 )}
@@ -248,7 +249,7 @@ export const ActiveCycleDetails: React.FC<IActiveCycleDetails> = observer((props
                 href={`/${workspaceSlug}/projects/${projectId}/cycles/${activeCycle.id}`}
                 className="w-min text-nowrap rounded-md bg-custom-primary px-4 py-2 text-center text-sm font-medium text-white hover:bg-custom-primary/90"
               >
-                View Sprint
+                View Cycle
               </Link>
             </div>
           </div>
@@ -335,7 +336,7 @@ export const ActiveCycleDetails: React.FC<IActiveCycleDetails> = observer((props
                 ))
               ) : (
                 <div className="flex items-center justify-center h-full text-sm text-custom-text-200">
-                  There are no high priority issues present in this sprint.
+                  There are no high priority issues present in this cycle.
                 </div>
               )
             ) : (

@@ -13,15 +13,13 @@ import { SettingIcon } from "components/icons";
 export enum EUserWorkspaceRoles {
   GUEST = 5,
   VIEWER = 10,
-  TESTER = 12,
   MEMBER = 15,
   ADMIN = 20,
 }
 
 export const ROLE = {
   5: "Guest",
-  10: "Developer",
-  12: "Tester",
+  10: "Viewer",
   15: "Member",
   20: "Admin",
 };

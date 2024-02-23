@@ -69,20 +69,11 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
   // state
   const [loader, setLoader] = useState(false);
 
-  useEffect(() => {
-    if (peekIssue) {
-      setLoader(true);
-      fetchIssue(peekIssue.workspaceSlug, peekIssue.projectId, peekIssue.issueId).finally(() => {
-        setLoader(false);
-      });
-    }
-  }, [peekIssue, fetchIssue]);
-
   const issueOperations: TIssuePeekOperations = useMemo(
     () => ({
       fetch: async (workspaceSlug: string, projectId: string, issueId: string) => {
         try {
-          await fetchIssue(workspaceSlug, projectId, issueId);
+          await fetchIssue(workspaceSlug, projectId, issueId, is_archived);
         } catch (error) {
           console.error("Error fetching the parent issue");
         }
@@ -155,15 +146,15 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
       },
       addIssueToCycle: async (workspaceSlug: string, projectId: string, cycleId: string, issueIds: string[]) => {
         try {
-          const response = await addIssueToCycle(workspaceSlug, projectId, cycleId, issueIds);
+          await addIssueToCycle(workspaceSlug, projectId, cycleId, issueIds);
           setToastAlert({
-            title: "Sprint added to issue successfully",
+            title: "Cycle added to issue successfully",
             type: "success",
             message: "Issue added to issue successfully",
           });
           captureIssueEvent({
             eventName: ISSUE_UPDATED,
-            payload: { ...response, state: "SUCCESS", element: "Issue peek-overview" },
+            payload: { ...issueIds, state: "SUCCESS", element: "Issue peek-overview" },
             updates: {
               changed_property: "cycle_id",
               change_details: cycleId,
@@ -181,9 +172,9 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
             path: router.asPath,
           });
           setToastAlert({
-            title: "Sprint add to issue failed",
+            title: "Cycle add to issue failed",
             type: "error",
-            message: "Sprint add to issue failed",
+            message: "Cycle add to issue failed",
           });
         }
       },
@@ -191,9 +182,9 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
         try {
           const response = await removeIssueFromCycle(workspaceSlug, projectId, cycleId, issueId);
           setToastAlert({
-            title: "Sprint removed from issue successfully",
+            title: "Cycle removed from issue successfully",
             type: "success",
-            message: "Sprint removed from issue successfully",
+            message: "Cycle removed from issue successfully",
           });
           captureIssueEvent({
             eventName: ISSUE_UPDATED,
@@ -206,9 +197,9 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
           });
         } catch (error) {
           setToastAlert({
-            title: "Sprint remove from issue failed",
+            title: "Cycle remove from issue failed",
             type: "error",
-            message: "Sprint remove from issue failed",
+            message: "Cycle remove from issue failed",
           });
           captureIssueEvent({
             eventName: ISSUE_UPDATED,
@@ -324,8 +315,19 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
       removeModulesFromIssue,
       setToastAlert,
       onIssueUpdate,
+      captureIssueEvent,
+      router.asPath,
     ]
   );
+
+  useEffect(() => {
+    if (peekIssue) {
+      setLoader(true);
+      issueOperations.fetch(peekIssue.workspaceSlug, peekIssue.projectId, peekIssue.issueId).finally(() => {
+        setLoader(false);
+      });
+    }
+  }, [peekIssue, issueOperations]);
 
   if (!peekIssue?.workspaceSlug || !peekIssue?.projectId || !peekIssue?.issueId) return <></>;
 
@@ -333,7 +335,7 @@ export const IssuePeekOverview: FC<IIssuePeekOverview> = observer((props) => {
 
   const currentProjectRole = currentWorkspaceAllProjectsRole?.[peekIssue?.projectId];
   // Check if issue is editable, based on user role
-  const is_editable = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const is_editable = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
   const isLoading = !issue || loader ? true : false;
 
   return (

@@ -113,7 +113,7 @@ class Command(BaseCommand):
             obj, created = InstanceConfiguration.objects.get_or_create(
                 key=item.get("key")
             )
-            if created or item.get("value"):
+            if created:
                 obj.category = item.get("category")
                 obj.is_encrypted = item.get("is_encrypted", False)
                 if item.get("is_encrypted", False):

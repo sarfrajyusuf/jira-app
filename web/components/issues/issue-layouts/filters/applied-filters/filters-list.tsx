@@ -42,7 +42,7 @@ export const AppliedFiltersList: React.FC<Props> = observer((props) => {
 
   if (Object.keys(appliedFilters).length === 0) return null;
 
-  const isEditingAllowed = alwaysAllowEditing || (currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER);
+  const isEditingAllowed = alwaysAllowEditing || (currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER);
 
   return (
     <div className="flex flex-wrap items-stretch gap-2 bg-custom-background-100">

@@ -54,7 +54,7 @@ export const HeaderGroupByCard = observer(
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Selected issues could not be added to the sprint. Please try again.",
+          message: "Selected issues could not be added to the cycle. Please try again.",
         });
       }
     };

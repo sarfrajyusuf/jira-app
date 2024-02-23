@@ -53,7 +53,7 @@ export const CustomAnalyticsSidebarProjectsList: React.FC<Props> = observer((pro
                 <div className="flex items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2">
                     <Contrast className="text-custom-text-200" size={14} strokeWidth={2} />
-                    <h6>Total sprints</h6>
+                    <h6>Total cycles</h6>
                   </div>
                   <span className="text-custom-text-200">{project.total_cycles}</span>
                 </div>

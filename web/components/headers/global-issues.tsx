@@ -102,7 +102,7 @@ export const GlobalIssuesHeader: React.FC<Props> = observer((props) => {
     [workspaceSlug, updateFilters, globalViewId]
   );
 
-  const isAuthorizedUser = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.VIEWER;
+  const isAuthorizedUser = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.MEMBER;
 
   return (
     <>

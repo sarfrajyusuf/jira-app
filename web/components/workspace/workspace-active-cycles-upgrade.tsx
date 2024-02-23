@@ -19,7 +19,7 @@ export const WorkspaceActiveCyclesUpgrade = observer(() => {
   const isDarkMode = currentUser?.theme.theme === "dark";
 
   return (
-    <div className="flex flex-col gap-10 pt-8 px-8 rounded-xl h-full">
+    <div className="flex flex-col gap-10 pt-8 px-8 rounded-xl h-full vertical-scrollbar scrollbar-lg">
       <div
         className={cn("flex item-center justify-between rounded-xl min-h-[25rem]", {
           "bg-gradient-to-l from-[#CFCFCF]  to-[#212121]": currentUser?.theme.theme === "dark",
@@ -28,9 +28,9 @@ export const WorkspaceActiveCyclesUpgrade = observer(() => {
       >
         <div className="relative px-14 flex flex-col gap-7 justify-center lg:w-1/2">
           <div className="flex flex-col gap-2 max-w-64">
-            <h2 className="text-2xl font-semibold">On-demand snapshots of all your sprints</h2>
+            <h2 className="text-2xl font-semibold">On-demand snapshots of all your cycles</h2>
             <p className="text-base font-medium text-custom-text-300">
-              Monitor sprints across projects, track high-priority issues, and zoom in sprints that need attention.
+              Monitor cycles across projects, track high-priority issues, and zoom in cycles that need attention.
             </p>
           </div>
           <div className="flex items-center gap-3">

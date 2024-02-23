@@ -40,9 +40,7 @@ export const ProjectLayoutRoot: FC = observer(() => {
     }
   });
 
-  // const activeLayout = issuesFilter?.issueFilters?.displayFilters?.layout;
-  const isBacklogPage = router.pathname.includes("/backlogs");
-  const activeLayout = isBacklogPage? "list" : issuesFilter?.issueFilters?.displayFilters?.layout;
+  const activeLayout = issuesFilter?.issueFilters?.displayFilters?.layout;
 
   if (!workspaceSlug || !projectId) return <></>;
 

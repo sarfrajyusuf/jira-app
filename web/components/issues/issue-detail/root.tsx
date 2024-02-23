@@ -160,15 +160,15 @@ export const IssueDetailRoot: FC<TIssueDetailRoot> = observer((props) => {
       },
       addIssueToCycle: async (workspaceSlug: string, projectId: string, cycleId: string, issueIds: string[]) => {
         try {
-          const response = await addIssueToCycle(workspaceSlug, projectId, cycleId, issueIds);
+          await addIssueToCycle(workspaceSlug, projectId, cycleId, issueIds);
           setToastAlert({
-            title: "Sprint added to issue successfully",
+            title: "Cycle added to issue successfully",
             type: "success",
             message: "Issue added to issue successfully",
           });
           captureIssueEvent({
             eventName: ISSUE_UPDATED,
-            payload: { ...response, state: "SUCCESS", element: "Issue detail page" },
+            payload: { ...issueIds, state: "SUCCESS", element: "Issue detail page" },
             updates: {
               changed_property: "cycle_id",
               change_details: cycleId,
@@ -220,9 +220,9 @@ export const IssueDetailRoot: FC<TIssueDetailRoot> = observer((props) => {
             path: router.asPath,
           });
           setToastAlert({
-            title: "Sprint remove from issue failed",
+            title: "Cycle remove from issue failed",
             type: "error",
-            message: "Sprint remove from issue failed",
+            message: "Cycle remove from issue failed",
           });
         }
       },
@@ -334,7 +334,7 @@ export const IssueDetailRoot: FC<TIssueDetailRoot> = observer((props) => {
   // issue details
   const issue = getIssueById(issueId);
   // checking if issue is editable, based on user role
-  const is_editable = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const is_editable = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   return (
     <>

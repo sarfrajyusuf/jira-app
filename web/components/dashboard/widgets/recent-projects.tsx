@@ -79,7 +79,7 @@ export const RecentProjectsWidget: React.FC<WidgetProps> = observer((props) => {
   const { fetchWidgetStats, getWidgetStats } = useDashboard();
   // derived values
   const widgetStats = getWidgetStats<TRecentProjectsWidgetResponse>(workspaceSlug, dashboardId, WIDGET_KEY);
-  const canCreateProject = currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.VIEWER;
+  const canCreateProject = currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.MEMBER;
 
   useEffect(() => {
     fetchWidgetStats(workspaceSlug, dashboardId, {
@@ -96,7 +96,7 @@ export const RecentProjectsWidget: React.FC<WidgetProps> = observer((props) => {
         href={`/${workspaceSlug}/projects`}
         className="text-lg font-semibold text-custom-text-300 mx-7 hover:underline"
       >
-        Your projects
+        Recent projects
       </Link>
       <div className="space-y-8 mt-4 mx-7">
         {canCreateProject && (

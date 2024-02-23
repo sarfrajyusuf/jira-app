@@ -51,7 +51,7 @@ export const IssueCycleSelect: React.FC<TIssueCycleSelect> = observer((props) =>
         className="w-full group"
         buttonContainerClassName="w-full text-left"
         buttonClassName={`text-sm ${issue?.cycle_id ? "" : "text-custom-text-400"}`}
-        placeholder="No sprint"
+        placeholder="No cycle"
         hideIcon
         dropdownArrow
         dropdownArrowClassName="h-3.5 w-3.5 hidden group-hover:inline"

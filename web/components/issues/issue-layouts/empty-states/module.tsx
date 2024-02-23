@@ -75,7 +75,7 @@ export const ModuleEmptyState: React.FC<Props> = observer((props) => {
   const currentLayoutEmptyStateImagePath = getEmptyStateImagePath("empty-filters", activeLayout ?? "list", isLightMode);
   const emptyStateImage = getEmptyStateImagePath("module-issues", activeLayout ?? "list", isLightMode);
 
-  const isEditingAllowed = !!userRole && userRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!userRole && userRole >= EUserProjectRoles.MEMBER;
 
   const emptyStateProps: EmptyStateProps = isEmptyFilters
     ? {

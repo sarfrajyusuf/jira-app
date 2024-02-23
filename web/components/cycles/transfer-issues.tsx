@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import useSWR from "swr";
 
+import isEmpty from "lodash/isEmpty";
 // component
 import { Button, TransferIcon } from "@plane/ui";
 // icon
@@ -40,10 +41,10 @@ export const TransferIssues: React.FC<Props> = (props) => {
     <div className="-mt-2 mb-4 flex items-center justify-between px-4 pt-6">
       <div className="flex items-center gap-2 text-sm text-custom-text-200">
         <AlertCircle className="h-3.5 w-3.5 text-custom-text-200" />
-        <span>Completed sprint are not editable.</span>
+        <span>Completed cycles are not editable.</span>
       </div>
 
-      {transferableIssuesCount > 0 && (
+      {isEmpty(cycleDetails?.progress_snapshot) && transferableIssuesCount > 0 && (
         <div>
           <Button variant="primary" prependIcon={<TransferIcon color="white" />} onClick={handleClick}>
             Transfer Issues

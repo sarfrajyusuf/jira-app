@@ -25,14 +25,14 @@ export const ProjectCardList = observer(() => {
   const isLightMode = resolvedTheme ? resolvedTheme === "light" : currentUser?.theme.theme === "light";
   const emptyStateImage = getEmptyStateImagePath("onboarding", "projects", isLightMode);
 
-  const isEditingAllowed = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.VIEWER;
+  const isEditingAllowed = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.MEMBER;
 
   if (!workspaceProjectIds) return <ProjectsLoader />;
 
   return (
     <>
       {workspaceProjectIds.length > 0 ? (
-        <div className="h-full w-full overflow-y-auto p-8">
+        <div className="h-full w-full overflow-y-auto p-8 vertical-scrollbar scrollbar-lg">
           {searchedProjects.length == 0 ? (
             <div className="mt-10 w-full text-center text-custom-text-400">No matching projects</div>
           ) : (

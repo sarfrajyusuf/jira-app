@@ -6,7 +6,7 @@ export abstract class APIService {
   protected headers: any = {};
 
   constructor(baseURL: string) {
-    this.baseURL = "http://30.10.0.7:8000";
+    this.baseURL = baseURL;
   }
 
   setRefreshToken(token: string) {

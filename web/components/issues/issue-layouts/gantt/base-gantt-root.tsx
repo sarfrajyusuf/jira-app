@@ -58,7 +58,7 @@ export const BaseGanttRoot: React.FC<IBaseGanttRoot> = observer((props: IBaseGan
     await issueStore.updateIssue(workspaceSlug.toString(), issue.project_id, issue.id, payload, viewId);
   };
 
-  const isAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   return (
     <>

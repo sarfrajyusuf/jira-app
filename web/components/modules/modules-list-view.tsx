@@ -33,7 +33,7 @@ export const ModulesListView: React.FC = observer(() => {
   const isLightMode = resolvedTheme ? resolvedTheme === "light" : currentUser?.theme.theme === "light";
   const EmptyStateImagePath = getEmptyStateImagePath("onboarding", "modules", isLightMode);
 
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   if (loader || !projectModuleIds)
     return (
@@ -51,7 +51,7 @@ export const ModulesListView: React.FC = observer(() => {
           {modulesView === "list" && (
             <div className="h-full overflow-y-auto">
               <div className="flex h-full w-full justify-between">
-                <div className="flex h-full w-full flex-col overflow-y-auto">
+                <div className="flex h-full w-full flex-col overflow-y-auto vertical-scrollbar scrollbar-lg">
                   {projectModuleIds.map((moduleId) => (
                     <ModuleListItem key={moduleId} moduleId={moduleId} />
                   ))}
@@ -71,7 +71,7 @@ export const ModulesListView: React.FC = observer(() => {
                     peekModule
                       ? "lg:grid-cols-1 xl:grid-cols-2 3xl:grid-cols-3"
                       : "lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4"
-                  } auto-rows-max transition-all `}
+                  } auto-rows-max transition-all vertical-scrollbar scrollbar-lg`}
                 >
                   {projectModuleIds.map((moduleId) => (
                     <ModuleCardItem key={moduleId} moduleId={moduleId} />
