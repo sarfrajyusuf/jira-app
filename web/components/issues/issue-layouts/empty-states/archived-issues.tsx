@@ -61,7 +61,7 @@ export const ProjectArchivedEmptyState: React.FC = observer(() => {
     });
   };
 
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   const emptyStateProps: EmptyStateProps =
     issueFilterCount > 0

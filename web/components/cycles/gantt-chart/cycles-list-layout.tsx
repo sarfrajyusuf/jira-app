@@ -33,7 +33,7 @@ export const CyclesListGanttChartView: FC<Props> = observer((props) => {
     const payload: any = { ...data };
     if (data.sort_order) payload.sort_order = data.sort_order.newSortOrder;
 
-    await updateCycleDetails(workspaceSlug.toString(), cycle.project, cycle.id, payload);
+    await updateCycleDetails(workspaceSlug.toString(), cycle.project_id, cycle.id, payload);
   };
 
   const blockFormat = (blocks: (ICycle | null)[]) => {
@@ -53,7 +53,7 @@ export const CyclesListGanttChartView: FC<Props> = observer((props) => {
   };
 
   const isAllowed =
-    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER, EUserProjectRoles.TESTER, EUserProjectRoles.VIEWER].includes(currentProjectRole);
+    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER].includes(currentProjectRole);
 
   return (
     <div className="h-full w-full overflow-y-auto">

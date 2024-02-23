@@ -45,7 +45,7 @@ export const BaseCalendarRoot = observer((props: IBaseCalendarRoot) => {
     membership: { currentProjectRole },
   } = useUser();
 
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   const displayFilters = issuesFilterStore.issueFilters?.displayFilters;
 

@@ -89,7 +89,7 @@ export const CyclesHeader: FC = observer(() => {
                 toggleCreateCycleModal(true);
               }}
             >
-              <div className="hidden sm:block">Add</div> Sprint
+              <div className="hidden sm:block">Add</div> Cycle
             </Button>
           </div>
         )}

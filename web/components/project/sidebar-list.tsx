@@ -42,7 +42,7 @@ export const ProjectSidebarList: FC = observer(() => {
   // toast
   const { setToastAlert } = useToast();
 
-  const isAuthorizedUser = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.VIEWER;
+  const isAuthorizedUser = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.MEMBER;
 
   const handleCopyText = (projectId: string) => {
     copyUrlToClipboard(`${workspaceSlug}/projects/${projectId}/issues`).then(() => {
@@ -109,7 +109,7 @@ export const ProjectSidebarList: FC = observer(() => {
       )}
       <div
         ref={containerRef}
-        className={`h-full space-y-2 overflow-y-auto px-4 ${
+        className={`h-full space-y-2 overflow-y-auto pl-4 vertical-scrollbar scrollbar-md ${
           isScrolled ? "border-t border-custom-sidebar-border-300" : ""
         }`}
       >

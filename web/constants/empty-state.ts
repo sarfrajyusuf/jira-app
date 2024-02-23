@@ -17,18 +17,18 @@ export const WORKSPACE_EMPTY_STATE_DETAILS = {
     description:
       "See scope versus demand, estimates, and scope creep. Get performance by team members and teams, and make sure your project runs on time.",
     primaryButton: {
-      text: "Create Sprints and Modules first",
+      text: "Create Cycles and Modules first",
     },
     comicBox: {
-      title: "Analytics works best with Sprints + Modules",
+      title: "Analytics works best with Cycles + Modules",
       description:
-        "First, timebox your issues into Sprints and, if you can, group issues that span more than a sprint into Modules. Check out both on the left nav.",
+        "First, timebox your issues into Cycles and, if you can, group issues that span more than a cycle into Modules. Check out both on the left nav.",
     },
   },
   projects: {
     title: "Start a Project",
     description:
-      "Think of each project as the parent for goal-oriented work. Projects are where Jobs, Sprints, and Modules live and, along with your colleagues, help you achieve that goal.",
+      "Think of each project as the parent for goal-oriented work. Projects are where Jobs, Cycles, and Modules live and, along with your colleagues, help you achieve that goal.",
     primaryButton: {
       text: "Start your first project",
     },
@@ -169,22 +169,22 @@ export const PROJECT_SETTINGS_EMPTY_STATE_DETAILS = {
 
 export const CYCLE_EMPTY_STATE_DETAILS = {
   cycles: {
-    title: "Group and timebox your work in Sprints.",
+    title: "Group and timebox your work in Cycles.",
     description:
       "Break work down by timeboxed chunks, work backwards from your project deadline to set dates, and make tangible progress as a team.",
     comicBox: {
-      title: "Sprints are repetitive time-boxes.",
+      title: "Cycles are repetitive time-boxes.",
       description:
-        "A sprint, an iteration, and or any other term you use for weekly or fortnightly tracking of work is a sprints.",
+        "A sprint, an iteration, and or any other term you use for weekly or fortnightly tracking of work is a cycle.",
     },
     primaryButton: {
-      text: "Set your first sprint",
+      text: "Set your first cycle",
     },
   },
   "no-issues": {
     key: "no-issues",
-    title: "No issues added to the sprint",
-    description: "Add or create issues you wish to timebox and deliver within this sprint",
+    title: "No issues added to the cycle",
+    description: "Add or create issues you wish to timebox and deliver within this cycle",
     primaryButton: {
       text: "Create new issue ",
     },
@@ -194,24 +194,24 @@ export const CYCLE_EMPTY_STATE_DETAILS = {
   },
   active: {
     key: "active",
-    title: "No active sprints",
+    title: "No active cycles",
     description:
-      "An active sprint includes any period that encompasses today's date within its range. Find the progress and details of the active sprint here.",
+      "An active cycle includes any period that encompasses today's date within its range. Find the progress and details of the active cycle here.",
   },
   upcoming: {
     key: "upcoming",
-    title: "No upcoming sprints",
-    description: "Upcoming sprints on deck! Just add dates to sprints in draft, and they'll show up right here.",
+    title: "No upcoming cycles",
+    description: "Upcoming cycles on deck! Just add dates to cycles in draft, and they'll show up right here.",
   },
   completed: {
     key: "completed",
-    title: "No completed sprints",
-    description: "Any sprint with a past due date is considered completed. Explore all completed sprints here.",
+    title: "No completed cycles",
+    description: "Any cycle with a past due date is considered completed. Explore all completed cycles here.",
   },
   draft: {
     key: "draft",
-    title: "No draft sprints",
-    description: "No dates added in sprints? Find them here as drafts.",
+    title: "No draft cycles",
+    description: "No dates added in cycles? Find them here as drafts.",
   },
 };
 

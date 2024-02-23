@@ -112,7 +112,7 @@ export const AllIssueLayoutRoot: React.FC = observer(() => {
 
       const currentProjectRole = currentWorkspaceAllProjectsRole && currentWorkspaceAllProjectsRole[projectId];
 
-      return !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+      return !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
     },
     [currentWorkspaceAllProjectsRole]
   );
@@ -159,7 +159,7 @@ export const AllIssueLayoutRoot: React.FC = observer(() => {
         globalViewId.toString()
       );
     },
-    [updateFilters, workspaceSlug]
+    [updateFilters, workspaceSlug, globalViewId]
   );
 
   const renderQuickActions = useCallback(
@@ -175,7 +175,7 @@ export const AllIssueLayoutRoot: React.FC = observer(() => {
     [handleIssues]
   );
 
-  const isEditingAllowed = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.VIEWER;
+  const isEditingAllowed = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.MEMBER;
 
   if (loader === "init-loader" || !globalViewId || globalViewId !== dataViewId || !issueIds) {
     return <SpreadsheetLayoutLoader />;
@@ -183,7 +183,7 @@ export const AllIssueLayoutRoot: React.FC = observer(() => {
 
   return (
     <div className="relative flex h-full w-full flex-col overflow-hidden">
-      <div className="relative h-full w-full overflow-auto">
+      <div className="relative h-full w-full flex flex-col">
         <GlobalViewsAppliedFiltersRoot globalViewId={globalViewId} />
         {issueIds.length === 0 ? (
           <EmptyState

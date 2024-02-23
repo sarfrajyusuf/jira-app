@@ -22,7 +22,7 @@ type Props = {
   onComplete: () => void;
 };
 
-export type TTourSteps = "welcome" | "issues" | "sprints" | "modules" | "views" | "pages";
+export type TTourSteps = "welcome" | "issues" | "cycles" | "modules" | "views" | "pages";
 
 const TOUR_STEPS: {
   key: TTourSteps;
@@ -38,13 +38,13 @@ const TOUR_STEPS: {
     description:
       "The issue is the building block of the Plane. Most concepts in Plane are either associated with issues and their properties.",
     image: IssuesTour,
-    nextStep: "sprints",
+    nextStep: "cycles",
   },
   {
-    key: "sprints",
-    title: "Move with sprints",
+    key: "cycles",
+    title: "Move with cycles",
     description:
-      "sprints help you and your team to progress faster, similar to the sprints commonly used in agile development.",
+      "Cycles help you and your team to progress faster, similar to the sprints commonly used in agile development.",
     image: CyclesTour,
     prevStep: "issues",
     nextStep: "modules",
@@ -54,7 +54,7 @@ const TOUR_STEPS: {
     title: "Break into modules",
     description: "Modules break your big thing into Projects or Features, to help you organize better.",
     image: ModulesTour,
-    prevStep: "sprints",
+    prevStep: "cycles",
     nextStep: "views",
   },
   {
@@ -100,7 +100,7 @@ export const TourRoot: React.FC<Props> = observer((props) => {
                 Welcome to Plane, {currentUser?.first_name} {currentUser?.last_name}
               </h3>
               <p className="mt-3 text-sm text-custom-text-200">
-                We{"'"}re glad that you decided to try out Blockagile. You can now manage your projects with ease. Get
+                We{"'"}re glad that you decided to try out Plane. You can now manage your projects with ease. Get
                 started by creating a project.
               </p>
               <div className="flex h-full items-end">

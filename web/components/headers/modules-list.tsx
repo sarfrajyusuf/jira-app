@@ -30,7 +30,7 @@ export const ModulesListHeader: React.FC = observer(() => {
   const { storedValue: modulesView, setValue: setModulesView } = useLocalStorage("modules_view", "grid");
 
   const canUserCreateModule =
-    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER, EUserProjectRoles.TESTER, EUserProjectRoles.VIEWER].includes(currentProjectRole);
+    currentProjectRole && [EUserProjectRoles.ADMIN, EUserProjectRoles.MEMBER].includes(currentProjectRole);
   return (
     <div>
       <div className="relative z-10 flex h-[3.75rem] w-full flex-shrink-0 flex-row items-center justify-between gap-x-2 gap-y-4 border-b border-custom-border-200 bg-custom-sidebar-background-100 p-4">

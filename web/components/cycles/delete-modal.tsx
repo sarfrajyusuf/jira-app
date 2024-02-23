@@ -44,7 +44,7 @@ export const CycleDeleteModal: React.FC<ICycleDelete> = observer((props) => {
           setToastAlert({
             type: "success",
             title: "Success!",
-            message: "Sprint deleted successfully.",
+            message: "Cycle deleted successfully.",
           });
           captureCycleEvent({
             eventName: CYCLE_DELETED,
@@ -110,9 +110,9 @@ export const CycleDeleteModal: React.FC<ICycleDelete> = observer((props) => {
                       </div>
                       <span>
                         <p className="text-sm text-custom-text-200">
-                          Are you sure you want to delete sprint{' "'}
+                          Are you sure you want to delete cycle{' "'}
                           <span className="break-words font-medium text-custom-text-100">{cycle?.name}</span>
-                          {'"'}? All of the data related to the sprint will be permanently removed. This action cannot be
+                          {'"'}? All of the data related to the cycle will be permanently removed. This action cannot be
                           undone.
                         </p>
                       </span>
@@ -122,7 +122,7 @@ export const CycleDeleteModal: React.FC<ICycleDelete> = observer((props) => {
                         </Button>
 
                         <Button variant="danger" size="sm" tabIndex={1} onClick={formSubmit}>
-                          {loader ? "Deleting..." : "Delete Sprint"}
+                          {loader ? "Deleting..." : "Delete Cycle"}
                         </Button>
                       </div>
                     </div>

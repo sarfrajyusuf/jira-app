@@ -40,13 +40,13 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
   const handleCreateCycle = async (payload: Partial<ICycle>) => {
     if (!workspaceSlug || !projectId) return;
 
-    const selectedProjectId = payload.project ?? projectId.toString();
+    const selectedProjectId = payload.project_id ?? projectId.toString();
     await createCycle(workspaceSlug, selectedProjectId, payload)
       .then((res) => {
         setToastAlert({
           type: "success",
           title: "Success!",
-          message: "Sprint created successfully.",
+          message: "Cycle created successfully.",
         });
         captureCycleEvent({
           eventName: CYCLE_CREATED,
@@ -57,7 +57,7 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: err.detail ?? "Error in creating sprint. Please try again.",
+          message: err.detail ?? "Error in creating cycle. Please try again.",
         });
         captureCycleEvent({
           eventName: CYCLE_CREATED,
@@ -69,7 +69,7 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
   const handleUpdateCycle = async (cycleId: string, payload: Partial<ICycle>, dirtyFields: any) => {
     if (!workspaceSlug || !projectId) return;
 
-    const selectedProjectId = payload.project ?? projectId.toString();
+    const selectedProjectId = payload.project_id ?? projectId.toString();
     await updateCycleDetails(workspaceSlug, selectedProjectId, cycleId, payload)
       .then((res) => {
         const changed_properties = Object.keys(dirtyFields);
@@ -80,7 +80,7 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
         setToastAlert({
           type: "success",
           title: "Success!",
-          message: "Sprint updated successfully.",
+          message: "Cycle updated successfully.",
         });
       })
       .catch((err) => {
@@ -91,7 +91,7 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: err.detail ?? "Error in updating sprint. Please try again.",
+          message: err.detail ?? "Error in updating cycle. Please try again.",
         });
       });
   };
@@ -141,7 +141,7 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
       setToastAlert({
         type: "error",
         title: "Error!",
-        message: "You already have a sprint on the given dates, if you want to create a draft sprint, remove the dates.",
+        message: "You already have a cycle on the given dates, if you want to create a draft cycle, remove the dates.",
       });
   };
 
@@ -155,8 +155,8 @@ export const CycleCreateUpdateModal: React.FC<CycleModalProps> = (props) => {
 
     // if data is present, set active project to the project of the
     // issue. This has more priority than the project in the url.
-    if (data && data.project) {
-      setActiveProject(data.project);
+    if (data && data.project_id) {
+      setActiveProject(data.project_id);
       return;
     }
 

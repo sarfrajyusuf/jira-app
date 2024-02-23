@@ -106,7 +106,7 @@ export const GlobalViewsAppliedFiltersRoot = observer((props: Props) => {
 
   const areFiltersEqual = isEqual(appliedFilters, viewDetails?.filters);
 
-  const isAuthorizedUser = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.VIEWER;
+  const isAuthorizedUser = !!currentWorkspaceRole && currentWorkspaceRole >= EUserWorkspaceRoles.MEMBER;
 
   const isDefaultView = DEFAULT_GLOBAL_VIEWS_LIST.map((view) => view.key).includes(globalViewId as TStaticViewTypes);
 

@@ -46,12 +46,12 @@ export const PagesListView: FC<IPagesListView> = (props) => {
 
   // here we are only observing the projectPageStore, so that we can re-render the component when the projectPageStore changes
 
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   return (
     <>
       {projectPageIds && workspaceSlug && projectId ? (
-        <div className="h-full space-y-4 overflow-y-auto">
+        <div className="h-full space-y-4 overflow-y-auto vertical-scrollbar scrollbar-lg">
           {projectPageIds.length > 0 ? (
             <ul role="list" className="divide-y divide-custom-border-200">
               {projectPageIds.map((pageId: string) => (

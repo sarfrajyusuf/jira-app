@@ -13,13 +13,13 @@ export const INDIVIDUAL_WEBHOOK_OPTIONS: {
   },
   {
     key: "cycle",
-    label: "Sprints",
-    description: "Sprint created, updated, or deleted",
+    label: "Cycles",
+    description: "Cycle created, updated, or deleted",
   },
   {
     key: "issue",
     label: "Issues",
-    description: "Issue created, updated, deleted, added to a sprint or module",
+    description: "Issue created, updated, deleted, added to a cycle or module",
   },
   {
     key: "module",

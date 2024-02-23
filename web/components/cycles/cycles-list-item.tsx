@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react";
 // hooks
-import { useEventTracker, useCycle, useUser } from "hooks/store";
+import { useEventTracker, useCycle, useUser, useMember } from "hooks/store";
 import useToast from "hooks/use-toast";
 // components
 import { CycleCreateUpdateModal, CycleDeleteModal } from "components/cycles";
@@ -20,15 +20,11 @@ import { EUserWorkspaceRoles } from "constants/workspace";
 // types
 import { TCycleGroups } from "@plane/types";
 import { CYCLE_FAVORITED, CYCLE_UNFAVORITED } from "constants/event-tracker";
-import { CycleStartModal } from "./cycle-start-modal";
-import { CycleEndModal } from "./cycle-end-modal";
 
 type TCyclesListItem = {
   cycleId: string;
   handleEditCycle?: () => void;
   handleDeleteCycle?: () => void;
-  handlestartCycle?: () => void;
-  handleEndCycle?: () => void;
   handleAddToFavorites?: () => void;
   handleRemoveFromFavorites?: () => void;
   workspaceSlug: string;
@@ -40,8 +36,6 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
   // states
   const [updateModal, setUpdateModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const [startModal, setStartModal] = useState(false);
-  const [endModal, setEndModal] = useState(false);
   // router
   const router = useRouter();
   // store hooks
@@ -50,6 +44,7 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
     membership: { currentProjectRole },
   } = useUser();
   const { getCycleById, addCycleToFavorites, removeCycleFromFavorites } = useCycle();
+  const { getUserDetails } = useMember();
   // toast alert
   const { setToastAlert } = useToast();
 
@@ -62,7 +57,7 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
       setToastAlert({
         type: "success",
         title: "Link Copied!",
-        message: "Sprint link copied to clipboard.",
+        message: "Cycle link copied to clipboard.",
       });
     });
   };
@@ -104,7 +99,7 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
         setToastAlert({
           type: "error",
           title: "Error!",
-          message: "Couldn't add the sprint to favorites. Please try again.",
+          message: "Couldn't add the cycle to favorites. Please try again.",
         });
       });
   };
@@ -115,18 +110,7 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
     setTrackElement("Cycles page list layout");
     setUpdateModal(true);
   };
-  const handleStartCycle = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setTrackElement("Cycles page list layout");
-    setStartModal(true);
-  };
-  const handleEndCycle = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setTrackElement("Cycles page list layout");
-    setEndModal(true);
-  };
+
   const handleDeleteCycle = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -151,24 +135,12 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
 
   // computed
   // TODO: change this logic once backend fix the response
- const getDateRangeStatus = (startDate: string | null | undefined, endDate: string | null | undefined) => {
-    if (!startDate || !endDate) return "draft";
-
-    const now = new Date();
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-
-    if (start <= now && end >= now) return "current";
-    else if (start > now) return "upcoming";
-    else return "completed";
-  };
-  // TODO: change this logic once backend fix the response
-  const cycleStatus = getDateRangeStatus(cycleDetails.start_date, cycleDetails.end_date);
+  const cycleStatus = cycleDetails.status ? (cycleDetails.status.toLocaleLowerCase() as TCycleGroups) : "draft";
   const isCompleted = cycleStatus === "completed";
   const endDate = new Date(cycleDetails.end_date ?? "");
   const startDate = new Date(cycleDetails.start_date ?? "");
 
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserWorkspaceRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserWorkspaceRoles.MEMBER;
 
   const cycleTotalIssues =
     cycleDetails.backlog_issues +
@@ -195,20 +167,6 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
         data={cycleDetails}
         isOpen={updateModal}
         handleClose={() => setUpdateModal(false)}
-        workspaceSlug={workspaceSlug}
-        projectId={projectId}
-      />
-      <CycleStartModal
-        data={cycleDetails}
-        isOpen={startModal}
-        handleClose={() => setStartModal(false)}
-        workspaceSlug={workspaceSlug}
-        projectId={projectId}
-      />
-      <CycleEndModal
-        data={cycleDetails}
-        isOpen={endModal}
-        handleClose={() => setEndModal(false)}
         workspaceSlug={workspaceSlug}
         projectId={projectId}
       />
@@ -266,29 +224,6 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
                   : `${currentCycle.label}`}
               </div>
             )}
-            {currentCycle && currentCycle.value === "upcoming" && (
-                <span
-                  className="flex h-6 w-20 items-center justify-center rounded-sm text-center text-xs"
-                  style={{
-                    color: "rgb(255 0 7)",
-                    backgroundColor: "rgb(245 5 5 / 13%)",
-                  }}
-                  onClick={handleStartCycle}
-                >
-                  Start Now
-                </span>
-              )}
-              {currentCycle && currentCycle.value==="current" && (
-                <span
-                  onClick={handleEndCycle}
-                  className="flex h-6 w-20 items-center justify-center rounded-sm text-center text-xs"
-                  style={{
-                    color: "rgb(255 0 7)",
-                    backgroundColor: "rgb(245 5 5 / 13%)",
-                  }}
-                >End Now
-                </span>
-              )}
           </div>
           <div className="relative flex w-full flex-shrink-0 items-center justify-between gap-2.5 overflow-hidden md:w-auto md:flex-shrink-0 md:justify-end ">
             <div className="text-xs text-custom-text-300">
@@ -296,13 +231,14 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
             </div>
 
             <div className="relative flex flex-shrink-0 items-center gap-3">
-              <Tooltip tooltipContent={`${cycleDetails.assignees.length} Members`}>
+              <Tooltip tooltipContent={`${cycleDetails.assignee_ids?.length} Members`}>
                 <div className="flex w-10 cursor-default items-center justify-center">
-                  {cycleDetails.assignees.length > 0 ? (
+                  {cycleDetails.assignee_ids?.length > 0 ? (
                     <AvatarGroup showTooltip={false}>
-                      {cycleDetails.assignees.map((assignee) => (
-                        <Avatar key={assignee.id} name={assignee.display_name} src={assignee.avatar} />
-                      ))}
+                      {cycleDetails.assignee_ids?.map((assigne_id) => {
+                        const member = getUserDetails(assigne_id);
+                        return <Avatar key={member?.id} name={member?.display_name} src={member?.avatar} />;
+                      })}
                     </AvatarGroup>
                   ) : (
                     <span className="flex h-5 w-5 items-end justify-center rounded-full border border-dashed border-custom-text-400 bg-custom-background-80">
@@ -330,13 +266,13 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
                         <CustomMenu.MenuItem onClick={handleEditCycle}>
                           <span className="flex items-center justify-start gap-2">
                             <Pencil className="h-3 w-3" />
-                            <span>Edit sprint</span>
+                            <span>Edit cycle</span>
                           </span>
                         </CustomMenu.MenuItem>
                         <CustomMenu.MenuItem onClick={handleDeleteCycle}>
                           <span className="flex items-center justify-start gap-2">
                             <Trash2 className="h-3 w-3" />
-                            <span>Delete sprint</span>
+                            <span>Delete cycle</span>
                           </span>
                         </CustomMenu.MenuItem>
                       </>
@@ -344,7 +280,7 @@ export const CyclesListItem: FC<TCyclesListItem> = observer((props) => {
                     <CustomMenu.MenuItem onClick={handleCopyText}>
                       <span className="flex items-center justify-start gap-2">
                         <LinkIcon className="h-3 w-3" />
-                        <span>Copy sprint link</span>
+                        <span>Copy cycle link</span>
                       </span>
                     </CustomMenu.MenuItem>
                   </CustomMenu>

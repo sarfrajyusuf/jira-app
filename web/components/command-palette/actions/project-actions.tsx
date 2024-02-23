@@ -30,7 +30,7 @@ export const CommandPaletteProjectActions: React.FC<Props> = (props) => {
         >
           <div className="flex items-center gap-2 text-custom-text-200">
             <ContrastIcon className="h-3.5 w-3.5" />
-            Create new sprint
+            Create new cycle
           </div>
           <kbd>Q</kbd>
         </Command.Item>

@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import {useRouter} from "next/router"
 // components
 import { IssueBlocksList, ListQuickAddIssueForm } from "components/issues";
 import { HeaderGroupByCard } from "./headers/group-by-card";
@@ -66,15 +65,12 @@ const GroupByList: React.FC<IGroupByList> = (props) => {
   const project = useProject();
   const label = useLabel();
   const projectState = useProjectState();
-  const router=useRouter();
+
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  let groups = getGroupByColumns(group_by as GroupByColumnTypes, project, label, projectState, member, true);
-  console.log(groups,"=====");
+  const groups = getGroupByColumns(group_by as GroupByColumnTypes, project, label, projectState, member, true);
+
   if (!groups) return null;
-  if(router.pathname.includes("/issues")){
-   groups=groups.filter((_list) => _list.name !== "Backlog");
-  }
 
   const prePopulateQuickAddData = (groupByKey: string | null, value: any) => {
     const defaultState = projectState.projectStates?.find((state) => state.default);
@@ -112,7 +108,7 @@ const GroupByList: React.FC<IGroupByList> = (props) => {
   const isGroupByCreatedBy = group_by === "created_by";
 
   return (
-    <div ref={containerRef} className="relative overflow-auto h-full w-full">
+    <div ref={containerRef} className="relative overflow-auto h-full w-full vertical-scrollbar scrollbar-lg">
       {groups &&
         groups.length > 0 &&
         groups.map(

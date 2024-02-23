@@ -51,7 +51,7 @@ export const BaseSpreadsheetRoot = observer((props: IBaseSpreadsheetRoot) => {
   // derived values
   const { enableInlineEditing, enableQuickAdd, enableIssueCreation } = issueStore?.viewFlags || {};
   // user role validation
-  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.VIEWER;
+  const isEditingAllowed = !!currentProjectRole && currentProjectRole >= EUserProjectRoles.MEMBER;
 
   const canEditProperties = useCallback(
     (projectId: string | undefined) => {
@@ -88,7 +88,7 @@ export const BaseSpreadsheetRoot = observer((props: IBaseSpreadsheetRoot) => {
         viewId
       );
     },
-    [issueFiltersStore, projectId, workspaceSlug, viewId]
+    [issueFiltersStore?.updateFilters, projectId, workspaceSlug, viewId]
   );
 
   const renderQuickActions = useCallback(

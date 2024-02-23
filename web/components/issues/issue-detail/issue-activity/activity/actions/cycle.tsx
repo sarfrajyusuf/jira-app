@@ -28,7 +28,7 @@ export const IssueCycleActivity: FC<TIssueCycleActivity> = observer((props) => {
       <>
         {activity.verb === "created" ? (
           <>
-            <span>added this issue to the sprint </span>
+            <span>added this issue to the cycle </span>
             <a
               href={`/${activity.workspace_detail?.slug}/projects/${activity.project}/cycles/${activity.new_identifier}`}
               target="_blank"
@@ -40,7 +40,7 @@ export const IssueCycleActivity: FC<TIssueCycleActivity> = observer((props) => {
           </>
         ) : activity.verb === "updated" ? (
           <>
-            <span>set the sprint to </span>
+            <span>set the cycle to </span>
             <a
               href={`/${activity.workspace_detail?.slug}/projects/${activity.project}/cycles/${activity.new_identifier}`}
               target="_blank"
@@ -52,7 +52,7 @@ export const IssueCycleActivity: FC<TIssueCycleActivity> = observer((props) => {
           </>
         ) : (
           <>
-            <span>removed the issue from the sprint </span>
+            <span>removed the issue from the cycle </span>
             <a
               href={`/${activity.workspace_detail?.slug}/projects/${activity.project}/cycles/${activity.old_identifier}`}
               target="_blank"
